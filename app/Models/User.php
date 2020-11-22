@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasFactory, HasApiTokens, Notifiable;
@@ -21,7 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+
     ];
+
+
 
     /**
      * The attributes that should be hidden for arrays.

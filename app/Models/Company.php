@@ -11,10 +11,15 @@ class Company extends Model
 
     protected $fillable = ['name','address','email','logo','ceo_id'];
 
+    //protected $append = ['name'];
+
 
     
-     public function CEO(){
+    public function CEO(){
         return $this->belongsTo('App\Models\CEO','ceo_id');
     }
     
+    // public function getNameAttribute($name){
+    //     return ucfirst($name);
+    // }
 }

@@ -22,6 +22,11 @@ class CompanyController extends Controller
     
     public function index()
     {
+    //    return Company::select(['id','name','address','created_at'])->get()->map(function($company){
+    //        $company->created_at =  $company->created_at->diffForHumans();
+           
+    //         return $company;
+    //     });
        
        $allcompany = $this->companydetail->orderBy('created_at','DESC')->paginate(1);
      
@@ -73,7 +78,7 @@ class CompanyController extends Controller
 
        return response(['data'=>CompanyResource::collection($CompanyData),'message'=>'Detail of this page'],200);
        }else{
-            return response(['message'=>'Data not found for this id'],404);
+            return response(['message'=>'Data not found for this Company'],404);
        }
     }
 
