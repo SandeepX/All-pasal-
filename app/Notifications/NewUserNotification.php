@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use App\Models\User;
 
 
-class NewUserNotification extends Notification
+class NewUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -37,7 +37,7 @@ class NewUserNotification extends Notification
         return ['database'];
     }
 
-    public function toArray($notifiable)
+    public function todatabase($notifiable)
     {
         return [
             'name' => $this->user->name,

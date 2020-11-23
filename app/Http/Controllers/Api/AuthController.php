@@ -13,6 +13,7 @@ use Mail;
 Use Auth;
 use Validator;
 use DB;
+use Carbon\Carbon;
 
 
 
@@ -46,30 +47,36 @@ class AuthController extends Controller
                 Mail::to($user['email'])->send(new SendMail($user));
                 //dd('email sent');
                 
-                $alladmin = User::where('role','admin')->get(); 
-                //dd($alladmin);
-
-                Notification::send($alladmin, new NewUserNotification($user));
-            }
-
-            // foreach($alladmin as $admin){
-            //     Notification::route('mail' , $admin->admin) 
-            //                 ->notify(new UserRegisterNotification($user)); 
-
-            // }
-
                 
-
+                
+                $alladmin = User::where('role','admin')->get();
+                $when = Carbon::now()->addSeconds(10);
+                // dd($when);
+                
+                foreach($alladmin as $admin){
+                    $admin->notify((new NewUserNotification($user))->delay($when));
+                }
+            
+                
+                
+                
+                //Notification::send($alladmin, new NewUserNotification($user));
+            }
+            
+            
+            
+            
+            
             DB::commit();
             return response(['users'=>$user, 'access_token'=> $accesstoken]);
-
-
+            
+            
         }catch(\Exception $e){
-
+            
             DB::rollback();
             return response()->json(['error'=>$e->getMessage()],500);
             
-        } 
+        }
          
 
         
