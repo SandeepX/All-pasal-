@@ -33,10 +33,14 @@
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                         @endif
                     @endif
+                    <a href="{{route('Alluser')}}" class="ml-4 text-sm text-gray-700 underline" title="">All user Detail Download</button></a>
                 </div>
+                
             @endif
 
-            Test Api day 1
+            All pasal 
+        
+            
             
         </div>
     </body>

@@ -144,7 +144,7 @@ class AuthController extends Controller
         
         DB::beginTransaction();
 
-        try{}
+        try{
 
             $userUnreadNotification = auth()->user()
                                             ->unreadNotifications
