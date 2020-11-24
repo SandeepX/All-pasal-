@@ -40,6 +40,7 @@ class NewUserNotification extends Notification implements ShouldQueue
     public function todatabase($notifiable)
     {
         return [
+            'title'=>'New user Registered',
             'name' => $this->user->name,
             'email' => $this->user->email,
         ];

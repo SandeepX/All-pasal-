@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewUserNotification;
 use App\Models\User;
+use App\Http\Resources\NotificationResource;
 use App\Mail\SendMail;
 use Mail;
 Use Auth;
@@ -49,6 +51,7 @@ class AuthController extends Controller
                 
                 
                 
+                
                 $alladmin = User::where('role','admin')->get();
                 $when = Carbon::now()->addSeconds(10);
                 // dd($when);
@@ -56,15 +59,9 @@ class AuthController extends Controller
                 foreach($alladmin as $admin){
                     $admin->notify((new NewUserNotification($user))->delay($when));
                 }
-            
-                
-                
                 
                 //Notification::send($alladmin, new NewUserNotification($user));
             }
-            
-            
-            
             
             
             DB::commit();
@@ -77,7 +74,7 @@ class AuthController extends Controller
             return response()->json(['error'=>$e->getMessage()],500);
             
         }
-         
+        
 
         
 
@@ -108,5 +105,70 @@ class AuthController extends Controller
         }else{
             return response()->json(['error' =>'logout unsuccessfulll'], 500);
         }
+    }
+
+    public function markAllread()
+    {
+        $data = auth()->user()->unreadNotifications()->select('id','data')->get();
+        if(count($data)>0){
+
+            foreach (auth()->user()->unreadNotifications as $notification) {
+                $id = $notification->id;
+                $status = auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+            }
+            
+            return response()->json(['success' =>'All notification read', 'data'=>$data],200); 
+        }
+        return response()->json(['message' =>'Notificaition already read'],200); 
+
+        
+
+    }
+
+    public function getAllunread()
+    {
+      $data=  auth()->user()->unreadNotifications()->select('id','data','read_at')->get();
+    
+      $UnreadNotificationCount = count($data);
+      //dd($UnreadNotificationCount);
+      if($data){
+          return response()->json(['message'=>'unread notificatin retrived successfully', 'data'=>$data],200);
+      }
+
+     
+    }
+
+    
+    public function markasRead($id)
+    {
+        
+        DB::beginTransaction();
+
+        try{}
+
+            $userUnreadNotification = auth()->user()
+                                            ->unreadNotifications
+                                            ->where('id', $id)
+                                            ->first();
+           
+            if($userUnreadNotification) {
+                $userUnreadNotification->markAsRead();
+     
+                return response()->json(['message'=>'Notification Read Successfully','data'=>$userUnreadNotification],200);
+                
+    
+            }else{
+                return response()->json(['message'=>'Notification already read','data'=>null],200);
+            }
+            
+            
+        }catch(\Exception $e){
+            
+            return response()->json(['error'=>$e->getMessage()],500);
+            DB::rollback();
+        }
+        
+        DB::commit();
+        
     }
 }
