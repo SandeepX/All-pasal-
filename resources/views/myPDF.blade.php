@@ -4,7 +4,6 @@
     <title>Hi</title>
 </head>
 <body>
-    
 @foreach($data as $value)
     <h1>{{ $value['name'] }}</h1>
     <h1>{{$value['email']}}</h1>

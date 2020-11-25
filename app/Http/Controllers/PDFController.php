@@ -22,7 +22,7 @@ class PDFController extends Controller
 
         //$data = User::where('email','pooja@gmail.com')->get();
         $data = User::all();
-        //dd($data);
+       // dd($data);
 
         view()->share('welcome',$data);
           
