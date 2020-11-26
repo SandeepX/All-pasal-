@@ -34,6 +34,7 @@
                         @endif
                     @endif
                     <a href="{{route('Alluser')}}" class="ml-4 text-sm text-gray-700 underline" title="">All user Detail Download</button></a>
+                    <a href="{{route('bill')}}" class="ml-4 text-sm text-gray-700 underline" title="">Bill</button></a>
                 </div>
                 
             @endif

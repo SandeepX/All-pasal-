@@ -23,15 +23,9 @@ class BillController extends Controller
 
             $data = json_decode ($response);
             $detail = $data->data->details;
-            //dd($detail);
+            
             return view('allpasal' ,compact('detail'));
-            //view()->share('allpasal',$detail);
-          
-           // $pdf = PDF::loadView('allpasal',compact('detail'));
-    
-           //return $pdf->download('Allpasal.pdf');
-           
-            //return view('allpasal',compact('detail'));
+            
         }
 
         
@@ -53,7 +47,7 @@ class BillController extends Controller
             $data = json_decode ($response);
             $detail = $data->data->details;
             
-            view()->share('allpasal',$detail);
+            //view()->share('allpasal',$detail);
         
             $pdf = PDF::loadView('allpasal',compact('detail'));
 

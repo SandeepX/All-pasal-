@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e1a14582804eb1fde96fccb6191f843",
+    "content-hash": "6fb26c14b9b17e24305e615c755adcd7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1149,6 +1149,123 @@
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
+            "name": "hnhdigital-os/laravel-number-converter",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnhdigital-os/laravel-number-converter.git",
+                "reference": "535bf827d131d29ff22805f28461b66365cdb99a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnhdigital-os/laravel-number-converter/zipball/535bf827d131d29ff22805f28461b66365cdb99a",
+                "reference": "535bf827d131d29ff22805f28461b66365cdb99a",
+                "shasum": ""
+            },
+            "require": {
+                "hnhdigital-os/php-number-converter": "1.*",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~2.0",
+                "squizlabs/php_codesniffer": "~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "HnhDigital\\LaravelNumberConverter\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HnhDigital\\LaravelNumberConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rocco Howard",
+                    "email": "rocco@bluora.com.au"
+                }
+            ],
+            "description": "Number to word, roman, ordinal converter",
+            "keywords": [
+                "converter",
+                "laravel",
+                "number",
+                "ordinal",
+                "roman",
+                "word"
+            ],
+            "support": {
+                "issues": "https://github.com/hnhdigital-os/laravel-number-converter/issues",
+                "source": "https://github.com/hnhdigital-os/laravel-number-converter/tree/1.4.0"
+            },
+            "time": "2020-11-11T10:36:37+00:00"
+        },
+        {
+            "name": "hnhdigital-os/php-number-converter",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnhdigital-os/php-number-converter.git",
+                "reference": "92a256430b781124161df61fcce2a9340d08ac9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnhdigital-os/php-number-converter/zipball/92a256430b781124161df61fcce2a9340d08ac9e",
+                "reference": "92a256430b781124161df61fcce2a9340d08ac9e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~2.0",
+                "phpunit/phpunit": "^7.0",
+                "squizlabs/php_codesniffer": "~3.0",
+                "symfony/thanks": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnhDigital\\PhpNumberConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riasad Tasha",
+                    "email": "saintkabyo@gmail.com"
+                },
+                {
+                    "name": "Rocco Howard",
+                    "email": "rocco@hnh.digital"
+                }
+            ],
+            "description": "Number to word, roman, ordinal converter",
+            "keywords": [
+                "converter",
+                "number",
+                "ordinal",
+                "roman",
+                "word"
+            ],
+            "support": {
+                "source": "https://github.com/hnhdigital-os/php-number-converter/tree/master"
+            },
+            "time": "2020-09-01T11:26:46+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.14.0",
             "source": {
@@ -1390,6 +1507,70 @@
                 "source": "https://github.com/laravel/passport"
             },
             "time": "2020-09-15T16:41:42+00:00"
+        },
+        {
+            "name": "laravel/telescope",
+            "version": "v4.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "7e9d9fdab18b86db6c8368f2a026ff695c8287e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/7e9d9fdab18b86db6c8368f2a026ff695c8287e9",
+                "reference": "7e9d9fdab18b86db6c8368f2a026ff695c8287e9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.2",
+                "php": "^7.3|^8.0",
+                "symfony/var-dumper": "^5.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "orchestra/testbench": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v4.3.1"
+            },
+            "time": "2020-11-05T12:12:19+00:00"
         },
         {
             "name": "laravel/tinker",

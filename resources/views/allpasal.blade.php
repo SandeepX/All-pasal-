@@ -3,8 +3,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>Bill</title>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <style>
     * {
@@ -66,7 +70,8 @@
   </style>
 </head>
 <body>
-  <div class="bill">
+  
+  <div class="bill" id="bill">
     <div class="bill-body">
       <div class="intro">
         <div>Tax Invoice</div>
@@ -75,10 +80,12 @@
         <div>Warehouse, Budhanilkantha-10, Kathmandu</div>
       </div>
 
-      <div>
-       <a href="{{route('bill')}}"> <button  type="button" class="btn btn-success">Generate Bill</button></a>
-      </div>
 
+      <div>
+      <a href="{{route('generateBill')}}"> <button  type="button" class="btn btn-success">Generate Bill</button></a>
+        <button  type="button" id ="save" class="btn btn-success ">Generate Bill</button>
+      </div>
+      
       <div class="intro-body">
         <div>Vat No. 609762431</div>
         <div>Contact No: 984003071</div>
@@ -99,9 +106,7 @@
       </div>
       <div class="payment-method">
         Payment Method: Cash/Credit/Cheque
-      </div>
-
-    
+      </div>    
 
       <div class="bill-table">
         <table>
@@ -118,9 +123,12 @@
           
           @if((isset($detail)) && count($detail)>0) 
             <?php $total = 0 ?>
-            @foreach($detail as $data)
+            @foreach($detail as $data)P
             @php( $subtotal = ($data->quantity) * ($data->unit_rate))
             @php ($total += $subtotal)
+
+
+            
            
             
              
@@ -143,9 +151,8 @@
             <td colspan="2" rowspan="5">
               <span style="font-weight: bold;">In words:</span>
               
-              
-              
-              Eighty six thousand nine hundred fifty eight and sixty paisa only.
+              {{ucfirst(NumConvert::word($total))}}
+             
             </td>
             <td colspan="2" align="right">
               Sub Total:
@@ -201,5 +208,39 @@
   </div>
 
   
+    
+    
+  
 </body>
 </html>
+  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+<script type="text/javascript">
+
+      
+    $('#save').click(function () {
+      
+      var doc = new jsPDF('p', 'pt', 'letter');
+      var elementHTML = $('#bill').html();
+      
+      var specialElementHandlers = {
+        '#save': function (element, renderer) {
+        return true;
+      }
+    };
+
+      doc.fromHTML(elementHTML, 15, 15, {
+        'width': 170,
+        'elementHandlers': specialElementHandlers
+      });
+          doc.save('bill.pdf');
+    });
+    
+           
+  
+  </script>
+
+
+
